@@ -1,0 +1,53 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env/
+
+# VS Code settings
+.vscode/
+
+# PyCharm settings
+.idea/
+
+# macOS system files
+.DS_Store
+
+# Test output
+*.log
+*.coverage
+.coverage.*
+.cache/
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.tox/
+
+# Codewars test cache
+codewars_test/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# pip environment files
+Pipfile.lock
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Ignore compiled Python extensions
+*.so
+
+# Ignore Python egg files
+*.egg
+*.egg-info/
+dist/
+build/

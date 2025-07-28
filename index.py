@@ -48,5 +48,20 @@ import pytest
 def test_better_than_average(arr, points, expected):
     assert better_than_average(arr, points) == expected
 
+
+def reverse_words(s):
+    """
+    Reverses the order of words in a string.
+    Example: "Hello world" → "world Hello"
+    """
+    return ' '.join(s.split()[::-1])
+
+def test_reverse_words():
+    assert reverse_words("Hello world") == "world Hello"
+    assert reverse_words("Python is great") == "great is Python"
+    assert reverse_words("a b c") == "c b a"
+    assert reverse_words("one") == "one"
+    assert reverse_words("") == ""
+    
 if __name__ == "__main__":
     pytest.main([__file__])

@@ -62,6 +62,22 @@ def test_reverse_words():
     assert reverse_words("a b c") == "c b a"
     assert reverse_words("one") == "one"
     assert reverse_words("") == ""
+
+def is_isogram(string):
+    """
+    Перевіряє, чи є слово ізограмою (без повторюваних літер, ігноруючи регістр).
+    Example: "Dermatoglyphics" → True
+             "aba" → False
+    """
+    cleaned = string.lower()
+    return len(set(cleaned)) == len(cleaned)
+
+def test_is_isogram():
+    assert is_isogram("Dermatoglyphics") is True
+    assert is_isogram("isogram") is True
+    assert is_isogram("aba") is False
+    assert is_isogram("moOse") is False  # 'o' повторюється
+    assert is_isogram("") is True
     
 if __name__ == "__main__":
     pytest.main([__file__])

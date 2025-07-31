@@ -100,6 +100,26 @@ def test_likes():
     assert likes(["Max", "John", "Mark"]) == "Max, John and Mark like this"
     assert likes(["Alex", "Jacob", "Mark", "Max"]) == "Alex, Jacob and 2 others like this"
     assert likes(["A", "B", "C", "D", "E"]) == "A, B and 3 others like this"
-    
+def can_form_palindrome(s):
+    """
+    Перевіряє, чи можна перестановкою символів у рядку утворити паліндром.
+    Example: "civic" → True (вже паліндром)
+             "ivicc" → True ("civic")
+             "hello" → False
+             "aabbcc" → True ("abccba")
+    """
+    from collections import Counter
+    freq = Counter(s)
+    odd_counts = sum(1 for count in freq.values() if count % 2 != 0)
+    return odd_counts <= 1
+
+def test_can_form_palindrome():
+    assert can_form_palindrome("civic") is True
+    assert can_form_palindrome("ivicc") is True
+    assert can_form_palindrome("hello") is False
+    assert can_form_palindrome("aabbcc") is True
+    assert can_form_palindrome("aabbc") is True  # "abcba"
+    assert can_form_palindrome("aabbcd") is False
+    assert can_form_palindrome("") is True    
 if __name__ == "__main__":
     pytest.main([__file__])

@@ -120,6 +120,21 @@ def test_can_form_palindrome():
     assert can_form_palindrome("aabbcc") is True
     assert can_form_palindrome("aabbc") is True  # "abcba"
     assert can_form_palindrome("aabbcd") is False
-    assert can_form_palindrome("") is True    
+    assert can_form_palindrome("") is True   
+def find_odd(arr):
+    """
+    Returns the integer that appears an odd number of times in the list.
+    """
+    result = 0
+    for num in arr:
+        result ^= num  # XOR will cancel out even occurrences
+    return result
+
+def test_find_odd():
+    assert find_odd([20, 1, 1, 2, 2, 3, 3]) == 20
+    assert find_odd([10, 10, 10]) == 10
+    assert find_odd([1, 1, 2]) == 2
+    assert find_odd([7]) == 7
+    assert find_odd([0, 0, 1, 1, 0]) == 0
 if __name__ == "__main__":
     pytest.main([__file__])

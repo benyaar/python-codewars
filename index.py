@@ -136,5 +136,21 @@ def test_find_odd():
     assert find_odd([1, 1, 2]) == 2
     assert find_odd([7]) == 7
     assert find_odd([0, 0, 1, 1, 0]) == 0
+
+
+def count_characters(s):
+    """
+    Counts how many times each character appears in the string s.
+    """
+    counts = {}
+    for ch in s:
+        counts[ch] = counts.get(ch, 0) + 1
+    return counts
+
+def test_count_characters():
+    assert count_characters("hello") == {'h': 1, 'e': 1, 'l': 2, 'o': 1}
+    assert count_characters("mississippi") == {'m':1, 'i':4, 's':4, 'p':2}
+    assert count_characters("") == {}
+    assert count_characters("aabbcc") == {'a':2, 'b':2, 'c':2}
 if __name__ == "__main__":
     pytest.main([__file__])

@@ -152,5 +152,25 @@ def test_count_characters():
     assert count_characters("mississippi") == {'m':1, 'i':4, 's':4, 'p':2}
     assert count_characters("") == {}
     assert count_characters("aabbcc") == {'a':2, 'b':2, 'c':2}
+
+
+def remove_duplicates(lst):
+    """
+    Returns a list with duplicates removed, keeping the first occurrences only.
+    """
+    seen = set()
+    result = []
+    for item in lst:
+        if item not in seen:
+            seen.add(item)
+            result.append(item)
+    return result
+
+def test_remove_duplicates():
+    assert remove_duplicates([1, 2, 1, 3, 2, 4]) == [1, 2, 3, 4]
+    assert remove_duplicates(['a', 'b', 'a', 'c', 'b']) == ['a', 'b', 'c']
+    assert remove_duplicates([]) == []
+    assert remove_duplicates([1, 1, 1, 1]) == [1]
+    assert remove_duplicates([True, False, True, False]) == [True, False]
 if __name__ == "__main__":
     pytest.main([__file__])

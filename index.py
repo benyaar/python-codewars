@@ -172,5 +172,32 @@ def test_remove_duplicates():
     assert remove_duplicates([]) == []
     assert remove_duplicates([1, 1, 1, 1]) == [1]
     assert remove_duplicates([True, False, True, False]) == [True, False]
+
+def longest_unique_substring(s):
+    """
+    Returns the length of the longest substring without repeating characters.
+    Uses sliding window technique.
+    """
+    seen = {}
+    left = 0
+    max_len = 0
+
+    for right, char in enumerate(s):
+        if char in seen and seen[char] >= left:
+            left = seen[char] + 1
+        seen[char] = right
+        max_len = max(max_len, right - left + 1)
+
+    return max_len
+
+
+def test_longest_unique_substring():
+    assert longest_unique_substring("abcabcbb") == 3
+    assert longest_unique_substring("bbbbb") == 1
+    assert longest_unique_substring("pwwkew") == 3
+    assert longest_unique_substring("") == 0
+    assert longest_unique_substring("abcdefg") == 7
+    assert longest_unique_substring("abba") == 2
+
 if __name__ == "__main__":
     pytest.main([__file__])

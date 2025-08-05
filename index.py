@@ -199,5 +199,24 @@ def test_longest_unique_substring():
     assert longest_unique_substring("abcdefg") == 7
     assert longest_unique_substring("abba") == 2
 
+def flatten(arr):
+    """
+    Recursively flattens a nested list into a flat list.
+    """
+    result = []
+    for item in arr:
+        if isinstance(item, list):
+            result.extend(flatten(item))
+        else:
+            result.append(item)
+    return result
+
+
+def test_flatten():
+    assert flatten([1, [2, 3, [4, 5]], 6]) == [1, 2, 3, 4, 5, 6]
+    assert flatten([[1, 2], [3, [4, [5]]]]) == [1, 2, 3, 4, 5]
+    assert flatten([[[[]]]]) == []
+    assert flatten([1, [], [2, [3]], 4]) == [1, 2, 3, 4]
+    assert flatten([]) == []
 if __name__ == "__main__":
     pytest.main([__file__])

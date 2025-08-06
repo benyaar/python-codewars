@@ -218,5 +218,22 @@ def test_flatten():
     assert flatten([[[[]]]]) == []
     assert flatten([1, [], [2, [3]], 4]) == [1, 2, 3, 4]
     assert flatten([]) == []
+
+def count_chars(s):
+    """
+    Counts the frequency of each character in the string.
+    """
+    freq = {}
+    for char in s:
+        freq[char] = freq.get(char, 0) + 1
+    return freq
+
+
+def test_count_chars():
+    assert count_chars("hello") == {'h': 1, 'e': 1, 'l': 2, 'o': 1}
+    assert count_chars("aabcc") == {'a': 2, 'b': 1, 'c': 2}
+    assert count_chars("") == {}
+    assert count_chars("aaa") == {'a': 3}
+    assert count_chars("abcabc") == {'a': 2, 'b': 2, 'c': 2}
 if __name__ == "__main__":
     pytest.main([__file__])

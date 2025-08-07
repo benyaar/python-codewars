@@ -1,3 +1,5 @@
+import math
+
 def scramble(string, positions):
     """
     Example:
@@ -235,5 +237,19 @@ def test_count_chars():
     assert count_chars("") == {}
     assert count_chars("aaa") == {'a': 3}
     assert count_chars("abcabc") == {'a': 2, 'b': 2, 'c': 2}
+    
+def filter_squares(arr):
+    """
+    Returns a list of numbers that are perfect squares.
+    """
+    return [x for x in arr if math.isqrt(x) ** 2 == x]
+
+
+def test_filter_squares():
+    assert filter_squares([1, 2, 3, 4, 5, 9, 16, 18, 20]) == [1, 4, 9, 16]
+    assert filter_squares([10, 15, 20]) == []
+    assert filter_squares([0, 1, 25, 26]) == [0, 1, 25]
+    assert filter_squares([]) == []
+    assert filter_squares([100, 121, 144]) == [100, 121, 144]
 if __name__ == "__main__":
     pytest.main([__file__])

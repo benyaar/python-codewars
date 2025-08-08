@@ -1,4 +1,5 @@
 import math
+from collections import Counter
 
 def scramble(string, positions):
     """
@@ -251,5 +252,25 @@ def test_filter_squares():
     assert filter_squares([0, 1, 25, 26]) == [0, 1, 25]
     assert filter_squares([]) == []
     assert filter_squares([100, 121, 144]) == [100, 121, 144]
+
+def most_common_char(s):
+    """
+    Returns the most frequent character in the string.
+    If multiple, returns the first by appearance.
+    """
+    if not s:
+        return ""
+    counts = Counter(s)
+    max_count = max(counts.values())
+    for ch in s:
+        if counts[ch] == max_count:
+            return ch
+
+def test_most_common_char():
+    assert most_common_char("hello world") == "l"
+    assert most_common_char("aabbbcc") == "b"
+    assert most_common_char("abc") == "a"
+    assert most_common_char("aaab") == "a"
+    assert most_common_char("") == ""
 if __name__ == "__main__":
     pytest.main([__file__])

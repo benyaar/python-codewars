@@ -272,5 +272,21 @@ def test_most_common_char():
     assert most_common_char("abc") == "a"
     assert most_common_char("aaab") == "a"
     assert most_common_char("") == ""
+
+
+def char_frequency(s):
+    """
+    Returns a dictionary with the frequency of each character in the string.
+    """
+    freq = {}
+    for char in s:
+        freq[char] = freq.get(char, 0) + 1
+    return freq
+
+def test_char_frequency():
+    assert char_frequency("hello") == {'h': 1, 'e': 1, 'l': 2, 'o': 1}
+    assert char_frequency("abca") == {'a': 2, 'b': 1, 'c': 1}
+    assert char_frequency("") == {}
+    assert char_frequency("aAa") == {'a': 2, 'A': 1}
 if __name__ == "__main__":
     pytest.main([__file__])

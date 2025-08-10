@@ -288,5 +288,20 @@ def test_char_frequency():
     assert char_frequency("abca") == {'a': 2, 'b': 1, 'c': 1}
     assert char_frequency("") == {}
     assert char_frequency("aAa") == {'a': 2, 'A': 1}
+
+def group_elements(lst):
+    seen = {}
+    for item in lst:
+        if item not in seen:
+            seen[item] = []
+        seen[item].append(item)
+    return list(seen.values())
+
+def test_group_elements():
+    assert group_elements([1, 2, 1, 3, 2, 1]) == [[1, 1, 1], [2, 2], [3]]
+    assert group_elements(['a', 'b', 'a', 'c', 'b']) == [['a', 'a'], ['b', 'b'], ['c']]
+    assert group_elements([]) == []
+    assert group_elements([1, 1, 1]) == [[1, 1, 1]]
+    
 if __name__ == "__main__":
     pytest.main([__file__])

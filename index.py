@@ -302,6 +302,16 @@ def test_group_elements():
     assert group_elements(['a', 'b', 'a', 'c', 'b']) == [['a', 'a'], ['b', 'b'], ['c']]
     assert group_elements([]) == []
     assert group_elements([1, 1, 1]) == [[1, 1, 1]]
-    
+
+def count_vowels(text):
+    vowels = "aeiou"
+    return sum(1 for ch in text.lower() if ch in vowels)
+
+def test_count_vowels():
+    assert count_vowels("hello") == 2
+    assert count_vowels("world") == 1
+    assert count_vowels("Python") == 1
+    assert count_vowels("AEIOU") == 5
+
 if __name__ == "__main__":
     pytest.main([__file__])

@@ -313,5 +313,42 @@ def test_count_vowels():
     assert count_vowels("Python") == 1
     assert count_vowels("AEIOU") == 5
 
+def valid_parentheses(s):
+    """
+    Returns True if the string s has valid matching parentheses of types (), {}, [].
+    Ignores non-bracket characters.
+    """
+    pairs = {')': '(', '}': '{', ']': '['}
+    stack = []
+    for ch in s:
+        if ch in '([{':
+            stack.append(ch)
+        elif ch in ')]}':
+            if not stack or stack[-1] != pairs[ch]:
+                return False
+            stack.pop()
+    return not stack
+
+@pytest.mark.parametrize("s, expected", [
+    ("()", True),
+    ("()[]{}", True),
+    ("(]", False),
+    ("([{}])", True),
+    ("([)]", False),
+    ("", True),
+    ("a+(b*c)-{d/2}", True),
+    ("(((", False),
+    ("))", False),
+    ("{[()()]}", True),
+    ("{[(])}", False),
+    ("[", False),
+    ("]", False),
+])
+
+
+def test_valid_parentheses(s, expected):
+    assert valid_parentheses(s) == expected
+
+
 if __name__ == "__main__":
     pytest.main([__file__])

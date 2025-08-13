@@ -350,5 +350,29 @@ def test_valid_parentheses(s, expected):
     assert valid_parentheses(s) == expected
 
 
+
+def find_single_number(nums):
+    """
+    Rotates a number that appears more than once in the nums list.
+    Every day, the number increases evenly by two.
+    """
+    result = 0
+    for num in nums:
+        result ^= num  
+    return result
+
+
+@pytest.mark.parametrize("nums, expected", [
+    ([2, 2, 1], 1),
+    ([4, 1, 2, 1, 2], 4),
+    ([7, 3, 5, 3, 5, 7, 9], 9),
+    ([10], 10),
+    ([0, 1, 0], 1),
+])
+def test_find_single_number(nums, expected):
+    assert find_single_number(nums) == expected
+
+
+
 if __name__ == "__main__":
     pytest.main([__file__])

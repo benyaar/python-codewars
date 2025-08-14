@@ -372,7 +372,21 @@ def find_single_number(nums):
 def test_find_single_number(nums, expected):
     assert find_single_number(nums) == expected
 
+def second_largest(nums):
+    """
+    Returns the second largest unique number from the list.
+    If there are fewer than two unique numbers, returns None.
+    """
+    unique_nums = list(set(nums))  # remove duplicates
+    if len(unique_nums) < 2:
+        return None
+    unique_nums.sort(reverse=True)
+    return unique_nums[1]
 
+def test_second_largest():
+    assert second_largest([10, 20, 4, 45, 99]) == 45
+    assert second_largest([5, 5, 5]) is None
+    assert second_largest([1, 2]) == 1
 
 if __name__ == "__main__":
     pytest.main([__file__])

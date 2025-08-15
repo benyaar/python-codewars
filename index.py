@@ -388,5 +388,29 @@ def test_second_largest():
     assert second_largest([5, 5, 5]) is None
     assert second_largest([1, 2]) == 1
 
+def flatten(arr):
+    """
+    Flattens a nested list into a single list.
+
+    Args:
+        arr (list): List that can contain nested lists.
+
+    Returns:
+        list: Flattened list with all elements from nested lists.
+    """
+    result = []
+    for item in arr:
+        if isinstance(item, list):
+            result.extend(flatten(item))
+        else:
+            result.append(item)
+    return result
+
+
+def test_flatten():
+    assert flatten([1, [2, 3, [4, 5]], 6]) == [1, 2, 3, 4, 5, 6]
+    assert flatten([]) == []
+    assert flatten([1, [2], 3]) == [1, 2, 3]
+
 if __name__ == "__main__":
     pytest.main([__file__])

@@ -412,5 +412,50 @@ def test_flatten():
     assert flatten([]) == []
     assert flatten([1, [2], 3]) == [1, 2, 3]
 
+def factorial(n):
+    """
+    Returns the factorial of a number n (n!).
+    Factorial is the product of all positive integers <= n.
+    Uses recursion.
+
+    Args:
+        n (int): Non-negative integer.
+
+    Returns:
+        int: Factorial of n.
+    """
+    if n < 0:
+        raise ValueError("Factorial is not defined for negative numbers")
+    if n == 0 or n == 1:
+        return 1
+    return n * factorial(n - 1)
+
+
+def factorial_iterative(n):
+    """
+    Returns the factorial of a number n (n!).
+    Uses an iterative approach.
+
+    Args:
+        n (int): Non-negative integer.
+
+    Returns:
+        int: Factorial of n.
+    """
+    if n < 0:
+        raise ValueError("Factorial is not defined for negative numbers")
+    result = 1
+    for i in range(2, n + 1):
+        result *= i
+    return result
+
+
+def test_factorial():
+    assert factorial(0) == 1
+    assert factorial(5) == 120
+    assert factorial_iterative(0) == 1
+    assert factorial_iterative(6) == 720
+
+
 if __name__ == "__main__":
     pytest.main([__file__])

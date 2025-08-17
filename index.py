@@ -457,5 +457,44 @@ def test_factorial():
     assert factorial_iterative(6) == 720
 
 
+def roman_encoder(n: int) -> str:
+    """
+    Converts an integer to a Roman numeral.
+    Supports numbers from 1 up to 3999.
+    """
+    dictionary = {
+        1000: 'M', 900: 'CM', 500: 'D', 400: 'CD',
+        100: 'C', 90: 'XC', 50: 'L', 40: 'XL',
+        10: 'X', 9: 'IX', 5: 'V', 4: 'IV',
+        1: 'I'
+    }
+
+    result = ""
+    for key in sorted(dictionary.keys(), reverse=True):
+        while n >= key:
+            result += dictionary[key]
+            n -= key
+    return result
+
+
+def test_roman_encoder():
+    assert roman_encoder(1) == "I"
+    assert roman_encoder(2) == "II"
+    assert roman_encoder(3) == "III"
+    assert roman_encoder(4) == "IV"
+    assert roman_encoder(5) == "V"
+    assert roman_encoder(9) == "IX"
+    assert roman_encoder(10) == "X"
+    assert roman_encoder(11) == "XI"
+    assert roman_encoder(19) == "XIX"
+    assert roman_encoder(22) == "XXII"
+    assert roman_encoder(15) == "XV"
+    assert roman_encoder(1000) == "M"
+    assert roman_encoder(1001) == "MI"
+    assert roman_encoder(1990) == "MCMXC"
+    assert roman_encoder(2007) == "MMVII"
+    assert roman_encoder(2008) == "MMVIII"
+
+
 if __name__ == "__main__":
     pytest.main([__file__])

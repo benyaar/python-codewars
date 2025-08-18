@@ -496,5 +496,23 @@ def test_roman_encoder():
     assert roman_encoder(2008) == "MMVIII"
 
 
+def rgb(r: int, g: int, b: int) -> str:
+    """
+    Converts RGB decimal values (0–255) into a 6-character hexadecimal string.
+    Values outside the range are clamped to [0, 255].
+    """
+    def clamp(x: int) -> int:
+        return max(0, min(255, x))
+
+    return "".join(f"{clamp(x):02X}" for x in (r, g, b))
+
+
+def test_rgb():
+    assert rgb(0, 0, 0) == "000000"
+    assert rgb(0, 0, -20) == "000000"
+    assert rgb(300, 255, 255) == "FFFFFF"
+    assert rgb(173, 255, 47) == "ADFF2F"
+
+
 if __name__ == "__main__":
     pytest.main([__file__])

@@ -514,5 +514,27 @@ def test_rgb():
     assert rgb(173, 255, 47) == "ADFF2F"
 
 
+def tower_builder(n: int) -> list[str]:
+    """
+    Builds a tower represented as a list of strings.
+    Each floor has centered '*' characters with spaces on both sides.
+    
+    Example:
+    tower_builder(3) -> ["  *  ", " *** ", "*****"]
+    """
+    result = []
+    for i in range(n):
+        spaces = " " * (n - i - 1)
+        stars = "*" * (2 * i + 1)
+        result.append(spaces + stars + spaces)
+    return result
+
+
+def test_tower_builder():
+    assert tower_builder(1) == ["*"]
+    assert tower_builder(2) == [" * ", "***"]
+    assert tower_builder(3) == ["  *  ", " *** ", "*****"]
+
+
 if __name__ == "__main__":
     pytest.main([__file__])

@@ -536,5 +536,24 @@ def test_tower_builder():
     assert tower_builder(3) == ["  *  ", " *** ", "*****"]
 
 
+def factorial(n: int) -> int:
+    """
+    Returns the factorial of n.
+    Factorial of 0 is defined as 1.
+    """
+    if n < 0:
+        raise ValueError("Factorial is not defined for negative numbers")
+    result = 1
+    for i in range(1, n + 1):
+        result *= i
+    return result
+
+
+def test_factorial():
+    assert factorial(0) == 1
+    assert factorial(1) == 1
+    assert factorial(5) == 120
+
+
 if __name__ == "__main__":
     pytest.main([__file__])

@@ -555,5 +555,22 @@ def test_factorial():
     assert factorial(5) == 120
 
 
+
+def unique_in_order(seq):
+    """
+    Unique In Order
+    """
+    result = []
+    for i, ch in enumerate(seq):
+        if i == 0 or ch != seq[i - 1]:
+            result.append(ch)
+    return result
+
+
+def test_unique_in_order():
+    assert unique_in_order("AAAABBBCCDAABBB") == ["A", "B", "C", "D", "A", "B"]
+    assert unique_in_order("ABBCcAD") == ["A", "B", "C", "c", "A", "D"]
+    assert unique_in_order([1, 2, 2, 3, 3]) == [1, 2, 3]
+
 if __name__ == "__main__":
     pytest.main([__file__])

@@ -572,5 +572,34 @@ def test_unique_in_order():
     assert unique_in_order("ABBCcAD") == ["A", "B", "C", "c", "A", "D"]
     assert unique_in_order([1, 2, 2, 3, 3]) == [1, 2, 3]
 
+
+def generate_hashtag(s: str) -> str | bool:
+    """
+    Generates a hashtag from the input string.
+    - Returns False if the string is empty or result exceeds 140 chars.
+    - Capitalizes the first letter of each word and removes spaces.
+    """
+    if not s or not s.strip():
+        return False
+
+    result = "#" + "".join(word.capitalize() for word in s.strip().split())
+    return result if len(result) <= 140 else False
+
+
+def test_generate_hashtag():
+    assert generate_hashtag("") is False
+    assert generate_hashtag(" " * 200) is False
+    assert generate_hashtag("Do We have A Hashtag") == "#DoWeHaveAHashtag"
+    assert generate_hashtag("Codewars") == "#Codewars"
+    assert generate_hashtag("Codewars Is Nice") == "#CodewarsIsNice"
+    assert generate_hashtag("Codewars is nice") == "#CodewarsIsNice"
+    assert generate_hashtag("code" + " " * 140 + "wars") == "#CodeWars"
+    assert generate_hashtag(
+        "L" + "o" * 138 + "ng Cat"
+    ) is False  # too long
+    assert generate_hashtag("a" * 139) == "#" + "A" + "a" * 138
+    assert generate_hashtag("a" * 140) is False
+
+
 if __name__ == "__main__":
     pytest.main([__file__])

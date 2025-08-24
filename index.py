@@ -601,5 +601,23 @@ def test_generate_hashtag():
     assert generate_hashtag("a" * 140) is False
 
 
+def spin_words(sentence: str) -> str:
+    """
+    Reverses words with length >= 5 in the sentence.
+    """
+    return " ".join(
+        word[::-1] if len(word) >= 5 else word
+        for word in sentence.split()
+    )
+
+
+def test_spin_words():
+    assert spin_words("Hey fellow warriors") == "Hey wollef sroirraw"
+    assert spin_words("This is a test") == "This is a test"
+    assert spin_words("This is another test") == "This is rehtona test"
+    assert spin_words("Welcome") == "emocleW"
+    assert spin_words("Codewars is awesome") == "srawedoC is emosewa"
+
+
 if __name__ == "__main__":
     pytest.main([__file__])

@@ -637,5 +637,37 @@ def test_digital_root():
     assert digital_root(0) == 0
 
 
+def diamond(n: int) -> str | None:
+    """
+    Returns a diamond shape of '*' characters of size n.
+    If n is even or <= 0 → returns None.
+    """
+    if n <= 0 or n % 2 == 0:
+        return None
+
+    result = []
+    mid = n // 2
+
+    for i in range(n):
+        stars = n - abs(mid - i) * 2
+        spaces = abs(mid - i)
+        result.append(" " * spaces + "*" * stars)
+
+    return "\n".join(result) + "\n"
+
+
+def test_diamond_valid():
+    assert diamond(1) == "*\n"
+    assert diamond(3) == " *\n***\n *\n"
+    assert diamond(5) == "  *\n ***\n*****\n ***\n  *\n"
+
+
+def test_diamond_invalid():
+    assert diamond(2) is None
+    assert diamond(-3) is None
+    assert diamond(0) is None
+
+
+
 if __name__ == "__main__":
     pytest.main([__file__])

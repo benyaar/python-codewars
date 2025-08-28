@@ -668,6 +668,20 @@ def test_diamond_invalid():
     assert diamond(0) is None
 
 
+def accum(s: str) -> str:
+    """
+    Example:
+        accum("abcd") => "A-Bb-Ccc-Dddd"
+        accum("RqaEzty") => "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
+    """
+    return "-".join(char.upper() + char.lower() * i for i, char in enumerate(s))
+
+
+def test_accum_basic():
+    assert accum("abcd") == "A-Bb-Ccc-Dddd"
+    assert accum("RqaEzty") == "R-Qq-Aaa-Eeee-Zzzzz-Tttttt-Yyyyyyy"
+    assert accum("cwAt") == "C-Ww-Aaa-Tttt"
+
 
 if __name__ == "__main__":
     pytest.main([__file__])

@@ -683,5 +683,31 @@ def test_accum_basic():
     assert accum("cwAt") == "C-Ww-Aaa-Tttt"
 
 
+def number_to_words(num):
+    """
+    Example:
+        number_to_words(305) => ["three", "zero", "five"]
+    """
+    mapping = {
+        "0": "zero",
+        "1": "one",
+        "2": "two",
+        "3": "three",
+        "4": "four",
+        "5": "five",
+        "6": "six",
+        "7": "seven",
+        "8": "eight",
+        "9": "nine",
+    }
+    return [mapping[digit] for digit in str(num)]
+
+
+def test_number_to_words_basic():
+    assert number_to_words(305) == ["three", "zero", "five"]
+    assert number_to_words(42) == ["four", "two"]
+    assert number_to_words(0) == ["zero"]
+
+
 if __name__ == "__main__":
     pytest.main([__file__])

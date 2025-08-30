@@ -709,5 +709,22 @@ def test_number_to_words_basic():
     assert number_to_words(0) == ["zero"]
 
 
+def sum_of_multiples(n):
+    """
+    Example:
+        sum_of_multiples(10) => 23
+        # бо 3 + 5 + 6 + 9 = 23
+    """
+    return sum(i for i in range(n) if i % 3 == 0 or i % 5 == 0)
+
+
+def test_sum_of_multiples_basic():
+    assert sum_of_multiples(10) == 23
+    assert sum_of_multiples(20) == 78
+    assert sum_of_multiples(0) == 0
+    assert sum_of_multiples(1) == 0
+    assert sum_of_multiples(16) == 60
+
+
 if __name__ == "__main__":
     pytest.main([__file__])

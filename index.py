@@ -726,5 +726,34 @@ def test_sum_of_multiples_basic():
     assert sum_of_multiples(16) == 60
 
 
+def to_leet_speak(text):
+    """
+    Example:
+        to_leet_speak("Leet") => "1337"
+        to_leet_speak("Hello World") => "H3ll0 W0rld"
+    """
+    mapping = {
+        'a': '4',
+        'e': '3',
+        'i': '1',
+        'o': '0',
+        's': '5',
+        't': '7'
+    }
+    result = ""
+    for char in text:
+        lower = char.lower()
+        result += mapping.get(lower, char)
+    return result
+
+
+def test_to_leet_speak():
+    assert to_leet_speak("Leet") == "1337"
+    assert to_leet_speak("Hello World") == "H3ll0 W0rld"
+    assert to_leet_speak("Python is strong") == "Py7h0n 15 57r0ng"
+    assert to_leet_speak("Sos") == "505"
+    assert to_leet_speak("") == ""
+
+
 if __name__ == "__main__":
     pytest.main([__file__])

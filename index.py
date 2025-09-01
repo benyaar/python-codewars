@@ -755,5 +755,32 @@ def test_to_leet_speak():
     assert to_leet_speak("") == ""
 
 
+def expanded_form(num: int) -> str:
+    """
+    Converts a number into its expanded form.
+    Each digit is multiplied by its place value and
+    all non-zero parts are joined with " + ".
+
+    Examples:
+    12     → "10 + 2"
+    45     → "40 + 5"
+    70304  → "70000 + 300 + 4"
+    """
+    digits = str(num)
+    parts = [
+        str(int(d) * 10 ** (len(digits) - i - 1))
+        for i, d in enumerate(digits) if d != "0"
+    ]
+    return " + ".join(parts)
+
+
+def test_expanded_form():
+    assert expanded_form(12) == "10 + 2"
+    assert expanded_form(42) == "40 + 2"
+    assert expanded_form(70304) == "70000 + 300 + 4"
+    assert expanded_form(9000001) == "9000000 + 1"
+    assert expanded_form(5) == "5"
+
+
 if __name__ == "__main__":
     pytest.main([__file__])

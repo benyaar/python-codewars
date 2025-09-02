@@ -782,5 +782,39 @@ def test_expanded_form():
     assert expanded_form(5) == "5"
 
 
+def fibonacci(n: int) -> int:
+    """
+    Returns the n-th Fibonacci number.
+    
+    The Fibonacci sequence is:
+    0, 1, 1, 2, 3, 5, 8, 13, ...
+    
+    Examples:
+        fibonacci(0) -> 0
+        fibonacci(1) -> 1
+        fibonacci(5) -> 5
+        fibonacci(7) -> 13
+    """
+    if n < 0:
+        raise ValueError("n must be non-negative")
+    if n in (0, 1):
+        return n
+    a, b = 0, 1
+    for _ in range(2, n + 1):
+        a, b = b, a + b
+    return b
+
+
+def test_fibonacci():
+    assert fibonacci(0) == 0
+    assert fibonacci(1) == 1
+    assert fibonacci(5) == 5
+    assert fibonacci(7) == 13
+    assert fibonacci(10) == 55
+
+test_fibonacci()
+print("All tests passed ✅")
+
+
 if __name__ == "__main__":
     pytest.main([__file__])

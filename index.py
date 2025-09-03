@@ -1,5 +1,7 @@
+import pytest
 import math
 from collections import Counter
+
 
 def scramble(string, positions):
     """
@@ -11,10 +13,12 @@ def scramble(string, positions):
         result[pos] = string[i]
     return ''.join(result)
 
+
 def test_scramble_basic():
-    assert scramble('abcd', [0,3,1,2]) == 'acdb'
-    assert scramble('sc301s', [4,0,3,1,5,2]) == 'c0s3s1'
-    assert scramble('bskl5', [2,1,4,3,0]) == '5sblk'
+    assert scramble('abcd', [0, 3, 1, 2]) == 'acdb'
+    assert scramble('sc301s', [4, 0, 3, 1, 5, 2]) == 'c0s3s1'
+    assert scramble('bskl5', [2, 1, 4, 3, 0]) == '5sblk'
+
 
 def count_by(x, n):
     """
@@ -23,12 +27,14 @@ def count_by(x, n):
     """
     return [x * i for i in range(1, n + 1)]
 
+
 def test_fixed_cases():
     assert count_by(1, 5) == [1, 2, 3, 4, 5]
     assert count_by(2, 5) == [2, 4, 6, 8, 10]
     assert count_by(3, 5) == [3, 6, 9, 12, 15]
     assert count_by(50, 5) == [50, 100, 150, 200, 250]
     assert count_by(100, 5) == [100, 200, 300, 400, 500]
+
 
 def better_than_average(class_points, your_points):
     """
@@ -37,7 +43,6 @@ def better_than_average(class_points, your_points):
     avg = sum(class_points) / len(class_points)
     return your_points > avg
 
-import pytest
 
 @pytest.mark.parametrize("arr, points, expected", [
     ([2, 3], 5, True),
@@ -59,12 +64,14 @@ def reverse_words(s):
     """
     return ' '.join(s.split()[::-1])
 
+
 def test_reverse_words():
     assert reverse_words("Hello world") == "world Hello"
     assert reverse_words("Python is great") == "great is Python"
     assert reverse_words("a b c") == "c b a"
     assert reverse_words("one") == "one"
     assert reverse_words("") == ""
+
 
 def is_isogram(string):
     """
@@ -75,12 +82,15 @@ def is_isogram(string):
     cleaned = string.lower()
     return len(set(cleaned)) == len(cleaned)
 
+
 def test_is_isogram():
     assert is_isogram("Dermatoglyphics") is True
     assert is_isogram("isogram") is True
     assert is_isogram("aba") is False
     assert is_isogram("moOse") is False  # 'o' повторюється
     assert is_isogram("") is True
+
+
 def likes(names):
     """
     Returns a string describing who likes something, based on the input list of names.
@@ -94,15 +104,19 @@ def likes(names):
     elif len(names) == 3:
         return f"{names[0]}, {names[1]} and {names[2]} like this"
     else:
-        return f"{names[0]}, {names[1]} and {len(names) - 2} others like this"    
+        return f"{names[0]}, {names[1]} and {len(names) - 2} others like this"
+
 
 def test_likes():
     assert likes([]) == "no one likes this"
     assert likes(["Peter"]) == "Peter likes this"
     assert likes(["Jacob", "Alex"]) == "Jacob and Alex like this"
     assert likes(["Max", "John", "Mark"]) == "Max, John and Mark like this"
-    assert likes(["Alex", "Jacob", "Mark", "Max"]) == "Alex, Jacob and 2 others like this"
+    assert likes(["Alex", "Jacob", "Mark", "Max"]
+                 ) == "Alex, Jacob and 2 others like this"
     assert likes(["A", "B", "C", "D", "E"]) == "A, B and 3 others like this"
+
+
 def can_form_palindrome(s):
     """
     Перевіряє, чи можна перестановкою символів у рядку утворити паліндром.
@@ -116,6 +130,7 @@ def can_form_palindrome(s):
     odd_counts = sum(1 for count in freq.values() if count % 2 != 0)
     return odd_counts <= 1
 
+
 def test_can_form_palindrome():
     assert can_form_palindrome("civic") is True
     assert can_form_palindrome("ivicc") is True
@@ -123,7 +138,9 @@ def test_can_form_palindrome():
     assert can_form_palindrome("aabbcc") is True
     assert can_form_palindrome("aabbc") is True  # "abcba"
     assert can_form_palindrome("aabbcd") is False
-    assert can_form_palindrome("") is True   
+    assert can_form_palindrome("") is True
+
+
 def find_odd(arr):
     """
     Returns the integer that appears an odd number of times in the list.
@@ -132,6 +149,7 @@ def find_odd(arr):
     for num in arr:
         result ^= num  # XOR will cancel out even occurrences
     return result
+
 
 def test_find_odd():
     assert find_odd([20, 1, 1, 2, 2, 3, 3]) == 20
@@ -150,11 +168,12 @@ def count_characters(s):
         counts[ch] = counts.get(ch, 0) + 1
     return counts
 
+
 def test_count_characters():
     assert count_characters("hello") == {'h': 1, 'e': 1, 'l': 2, 'o': 1}
-    assert count_characters("mississippi") == {'m':1, 'i':4, 's':4, 'p':2}
+    assert count_characters("mississippi") == {'m': 1, 'i': 4, 's': 4, 'p': 2}
     assert count_characters("") == {}
-    assert count_characters("aabbcc") == {'a':2, 'b':2, 'c':2}
+    assert count_characters("aabbcc") == {'a': 2, 'b': 2, 'c': 2}
 
 
 def remove_duplicates(lst):
@@ -169,12 +188,14 @@ def remove_duplicates(lst):
             result.append(item)
     return result
 
+
 def test_remove_duplicates():
     assert remove_duplicates([1, 2, 1, 3, 2, 4]) == [1, 2, 3, 4]
     assert remove_duplicates(['a', 'b', 'a', 'c', 'b']) == ['a', 'b', 'c']
     assert remove_duplicates([]) == []
     assert remove_duplicates([1, 1, 1, 1]) == [1]
     assert remove_duplicates([True, False, True, False]) == [True, False]
+
 
 def longest_unique_substring(s):
     """
@@ -202,6 +223,7 @@ def test_longest_unique_substring():
     assert longest_unique_substring("abcdefg") == 7
     assert longest_unique_substring("abba") == 2
 
+
 def flatten(arr):
     """
     Recursively flattens a nested list into a flat list.
@@ -222,6 +244,7 @@ def test_flatten():
     assert flatten([1, [], [2, [3]], 4]) == [1, 2, 3, 4]
     assert flatten([]) == []
 
+
 def count_chars(s):
     """
     Counts the frequency of each character in the string.
@@ -238,7 +261,8 @@ def test_count_chars():
     assert count_chars("") == {}
     assert count_chars("aaa") == {'a': 3}
     assert count_chars("abcabc") == {'a': 2, 'b': 2, 'c': 2}
-    
+
+
 def filter_squares(arr):
     """
     Returns a list of numbers that are perfect squares.
@@ -253,6 +277,7 @@ def test_filter_squares():
     assert filter_squares([]) == []
     assert filter_squares([100, 121, 144]) == [100, 121, 144]
 
+
 def most_common_char(s):
     """
     Returns the most frequent character in the string.
@@ -265,6 +290,7 @@ def most_common_char(s):
     for ch in s:
         if counts[ch] == max_count:
             return ch
+
 
 def test_most_common_char():
     assert most_common_char("hello world") == "l"
@@ -283,11 +309,13 @@ def char_frequency(s):
         freq[char] = freq.get(char, 0) + 1
     return freq
 
+
 def test_char_frequency():
     assert char_frequency("hello") == {'h': 1, 'e': 1, 'l': 2, 'o': 1}
     assert char_frequency("abca") == {'a': 2, 'b': 1, 'c': 1}
     assert char_frequency("") == {}
     assert char_frequency("aAa") == {'a': 2, 'A': 1}
+
 
 def group_elements(lst):
     seen = {}
@@ -297,21 +325,26 @@ def group_elements(lst):
         seen[item].append(item)
     return list(seen.values())
 
+
 def test_group_elements():
     assert group_elements([1, 2, 1, 3, 2, 1]) == [[1, 1, 1], [2, 2], [3]]
-    assert group_elements(['a', 'b', 'a', 'c', 'b']) == [['a', 'a'], ['b', 'b'], ['c']]
+    assert group_elements(['a', 'b', 'a', 'c', 'b']) == [
+        ['a', 'a'], ['b', 'b'], ['c']]
     assert group_elements([]) == []
     assert group_elements([1, 1, 1]) == [[1, 1, 1]]
+
 
 def count_vowels(text):
     vowels = "aeiou"
     return sum(1 for ch in text.lower() if ch in vowels)
+
 
 def test_count_vowels():
     assert count_vowels("hello") == 2
     assert count_vowels("world") == 1
     assert count_vowels("Python") == 1
     assert count_vowels("AEIOU") == 5
+
 
 def valid_parentheses(s):
     """
@@ -329,6 +362,7 @@ def valid_parentheses(s):
             stack.pop()
     return not stack
 
+
 @pytest.mark.parametrize("s, expected", [
     ("()", True),
     ("()[]{}", True),
@@ -344,11 +378,8 @@ def valid_parentheses(s):
     ("[", False),
     ("]", False),
 ])
-
-
 def test_valid_parentheses(s, expected):
     assert valid_parentheses(s) == expected
-
 
 
 def find_single_number(nums):
@@ -358,7 +389,7 @@ def find_single_number(nums):
     """
     result = 0
     for num in nums:
-        result ^= num  
+        result ^= num
     return result
 
 
@@ -372,6 +403,7 @@ def find_single_number(nums):
 def test_find_single_number(nums, expected):
     assert find_single_number(nums) == expected
 
+
 def second_largest(nums):
     """
     Returns the second largest unique number from the list.
@@ -383,10 +415,12 @@ def second_largest(nums):
     unique_nums.sort(reverse=True)
     return unique_nums[1]
 
+
 def test_second_largest():
     assert second_largest([10, 20, 4, 45, 99]) == 45
     assert second_largest([5, 5, 5]) is None
     assert second_largest([1, 2]) == 1
+
 
 def flatten(arr):
     """
@@ -411,6 +445,7 @@ def test_flatten():
     assert flatten([1, [2, 3, [4, 5]], 6]) == [1, 2, 3, 4, 5, 6]
     assert flatten([]) == []
     assert flatten([1, [2], 3]) == [1, 2, 3]
+
 
 def factorial(n):
     """
@@ -518,7 +553,7 @@ def tower_builder(n: int) -> list[str]:
     """
     Builds a tower represented as a list of strings.
     Each floor has centered '*' characters with spaces on both sides.
-    
+
     Example:
     tower_builder(3) -> ["  *  ", " *** ", "*****"]
     """
@@ -553,7 +588,6 @@ def test_factorial():
     assert factorial(0) == 1
     assert factorial(1) == 1
     assert factorial(5) == 120
-
 
 
 def unique_in_order(seq):
@@ -748,7 +782,7 @@ def to_leet_speak(text):
 
 
 def test_to_leet_speak():
-    assert to_leet_speak("Leet") == "1337"
+    assert to_leet_speak("Leet") == "L337"
     assert to_leet_speak("Hello World") == "H3ll0 W0rld"
     assert to_leet_speak("Python is strong") == "Py7h0n 15 57r0ng"
     assert to_leet_speak("Sos") == "505"
@@ -785,10 +819,10 @@ def test_expanded_form():
 def fibonacci(n: int) -> int:
     """
     Returns the n-th Fibonacci number.
-    
+
     The Fibonacci sequence is:
     0, 1, 1, 2, 3, 5, 8, 13, ...
-    
+
     Examples:
         fibonacci(0) -> 0
         fibonacci(1) -> 1
@@ -812,8 +846,59 @@ def test_fibonacci():
     assert fibonacci(7) == 13
     assert fibonacci(10) == 55
 
-test_fibonacci()
-print("All tests passed ✅")
+
+def cakes(recipe: dict, available: dict) -> int:
+    """
+    Calculates the maximum number of cakes that can be baked 
+    given a recipe and available ingredients.
+
+    Each ingredient in the recipe must be present in sufficient 
+    quantity in the available stock.
+
+    Example:
+        recipe = {"flour": 500, "sugar": 200, "eggs": 1}
+        available = {"flour": 1200, "sugar": 1200, "eggs": 5, "milk": 200}
+        → 2
+    """
+    res = []
+    for ingredient, amount in recipe.items():
+        if ingredient not in available:
+            return 0
+        res.append(available[ingredient] // amount)
+    return min(res)
+
+
+# ✅ Tests
+def test_cakes():
+    assert cakes(
+        {"flour": 500, "sugar": 200, "eggs": 1},
+        {"flour": 1200, "sugar": 1200, "eggs": 5, "milk": 200}
+    ) == 2
+
+    assert cakes(
+        {"cream": 200, "flour": 300, "sugar": 150, "milk": 100, "oil": 100},
+        {"sugar": 1700, "flour": 20000, "milk": 20000, "oil": 30000, "cream": 5000}
+    ) == 11
+
+    assert cakes(
+        {"apples": 3, "flour": 300, "sugar": 150, "milk": 100, "oil": 100},
+        {"sugar": 500, "flour": 2000, "milk": 2000}
+    ) == 0
+
+    assert cakes(
+        {"apples": 3, "flour": 300, "sugar": 150, "milk": 100, "oil": 100},
+        {"sugar": 500, "flour": 2000, "milk": 2000, "apples": 15, "oil": 20}
+    ) == 0
+
+    assert cakes(
+        {"eggs": 4, "flour": 400},
+        {}
+    ) == 0
+
+    assert cakes(
+        {"cream": 1, "flour": 3, "sugar": 1, "milk": 1, "oil": 1, "eggs": 1},
+        {"cream": 1, "flour": 3, "sugar": 1, "milk": 1, "oil": 1, "eggs": 1}
+    ) == 1
 
 
 if __name__ == "__main__":

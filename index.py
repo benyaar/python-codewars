@@ -901,5 +901,35 @@ def test_cakes():
     ) == 1
 
 
+def sum_pairs(ints, target):
+    """
+    Find the first two numbers in the list that add up to the target sum.
+    The pair returned should be the earliest in order of appearance,
+    preferring the one whose second element has the smallest index.
+    
+    Example:
+        [1, 4, 8, 7, 3, 15], 8 → [1, 7]
+    """
+    seen = set()
+    for num in ints:
+        diff = target - num
+        if num in seen:
+            return [diff, num]
+        seen.add(diff)
+    return None
+
+
+def test_sum_pairs():
+    assert sum_pairs([1, 4, 8, 7, 3, 15], 8) == [1, 7]
+    assert sum_pairs([1, -2, 3, 0, -6, 1], -6) == [0, -6]
+    assert sum_pairs([20, -13, 40], -7) is None
+    assert sum_pairs([1, 2, 3, 4, 1, 0], 2) == [1, 1]
+    assert sum_pairs([10, 5, 2, 3, 7, 5], 10) == [3, 7]
+    assert sum_pairs([4, -2, 3, 3, 4], 8) == [4, 4]
+    assert sum_pairs([0, 2, 0], 0) == [0, 0]
+    assert sum_pairs([5, 9, 13, -3], 10) == [13, -3]
+
+
+
 if __name__ == "__main__":
     pytest.main([__file__])

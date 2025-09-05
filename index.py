@@ -930,6 +930,25 @@ def test_sum_pairs():
     assert sum_pairs([5, 9, 13, -3], 10) == [13, -3]
 
 
+def digital_root(n):
+    """
+    Returns the digital root of a number.
+    Example:
+        16 → 1 + 6 = 7
+        942 → 9 + 4 + 2 = 15 → 1 + 5 = 6
+    """
+    while n >= 10:
+        n = sum(int(d) for d in str(n))
+    return n
+
+
+def test_digital_root():
+    assert digital_root(16) == 7
+    assert digital_root(942) == 6
+    assert digital_root(132189) == 6
+    assert digital_root(493193) == 2
+    assert digital_root(9) == 9
+
 
 if __name__ == "__main__":
     pytest.main([__file__])

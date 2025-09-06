@@ -950,5 +950,33 @@ def test_digital_root():
     assert digital_root(9) == 9
 
 
+def valid_parentheses(s):
+    """
+    Checks if the given string has valid parentheses.
+    
+    Example:
+        "()" → True
+        "())" → False
+        "(())" → True
+    """
+    balance = 0
+    for char in s:
+        if char == '(':
+            balance += 1
+        elif char == ')':
+            balance -= 1
+        if balance < 0: 
+            return False
+    return balance == 0
+
+
+def test_valid_parentheses():
+    assert valid_parentheses("()") is True
+    assert valid_parentheses("(())") is True
+    assert valid_parentheses("())") is False
+    assert valid_parentheses("(()") is False
+    assert valid_parentheses("") is True
+
+
 if __name__ == "__main__":
     pytest.main([__file__])

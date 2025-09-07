@@ -978,5 +978,24 @@ def test_valid_parentheses():
     assert valid_parentheses("") is True
 
 
+def move_zeros(arr):
+    """
+    Moves all zeros in the list to the end while preserving the order of non-zero elements.
+    Example:
+        [0, 1, 0, 3, 12] → [1, 3, 12, 0, 0]
+    """
+    non_zeros = [x for x in arr if x != 0]
+    zeros = [0] * (len(arr) - len(non_zeros))
+    return non_zeros + zeros
+
+
+def test_move_zeros():
+    assert move_zeros([0, 1, 0, 3, 12]) == [1, 3, 12, 0, 0]
+    assert move_zeros([1, 2, 3]) == [1, 2, 3]
+    assert move_zeros([0, 0, 0]) == [0, 0, 0]
+    assert move_zeros([]) == []
+    assert move_zeros([4, 0, 5, 0, 0, 6]) == [4, 5, 6, 0, 0, 0]
+
+
 if __name__ == "__main__":
     pytest.main([__file__])

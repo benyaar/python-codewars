@@ -997,5 +997,24 @@ def test_move_zeros():
     assert move_zeros([4, 0, 5, 0, 0, 6]) == [4, 5, 6, 0, 0, 0]
 
 
+def longest_word(sentence):
+    """
+    Returns the longest word in a given sentence.
+    If there are multiple with the same length, returns the first one.
+    
+    Example:
+        "The quick brown fox" → "quick"
+    """
+    words = sentence.split()
+    return max(words, key=len) if words else ""
+
+
+def test_longest_word():
+    assert longest_word("The quick brown fox") == "quick"
+    assert longest_word("Jumped over the lazy dog") == "Jumped"
+    assert longest_word("Hello world") == "Hello"
+    assert longest_word("") == ""
+
+
 if __name__ == "__main__":
     pytest.main([__file__])

@@ -1016,5 +1016,25 @@ def test_longest_word():
     assert longest_word("") == ""
 
 
+def find_missing_number(nums):
+    """
+    Given a list of consecutive numbers with one missing,
+    return the missing number.
+
+    Example:
+        [1, 2, 4, 5] → 3
+    """
+    n = len(nums) + 1
+    expected_sum = n * (nums[0] + nums[-1]) // 2
+    return expected_sum - sum(nums)
+
+
+def test_find_missing_number():
+    assert find_missing_number([1, 2, 4, 5]) == 3
+    assert find_missing_number([10, 11, 12, 14]) == 13
+    assert find_missing_number([100, 101, 103]) == 102
+    assert find_missing_number([7, 8, 9, 11]) == 10
+
+
 if __name__ == "__main__":
     pytest.main([__file__])

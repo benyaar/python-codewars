@@ -1036,5 +1036,26 @@ def test_find_missing_number():
     assert find_missing_number([7, 8, 9, 11]) == 10
 
 
+def is_valid_parentheses(s) 
+    stack = []
+    mapping = {')': '(', ']': '[', '}': '{'}
+
+    for ch in s:
+        if ch in mapping:
+            if not stack or stack.pop() != mapping[ch]:
+                return False
+        else:
+            stack.append(ch)
+    return not stack
+
+def test_is_valid_parentheses():
+    assert is_valid_parentheses("()") == True
+    assert is_valid_parentheses("()[]{}") == True
+    assert is_valid_parentheses("(]") == False
+    assert is_valid_parentheses("([)]") == False
+    assert is_valid_parentheses("{[]}") == True
+    assert is_valid_parentheses("") == True
+
+
 if __name__ == "__main__":
     pytest.main([__file__])

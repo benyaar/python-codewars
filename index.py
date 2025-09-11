@@ -1056,6 +1056,20 @@ def test_is_valid_parentheses():
     assert is_valid_parentheses("{[]}") == True
     assert is_valid_parentheses("") == True
 
+def first_unique_char(s)
+    from collections import Counter
+    counts = Counter(s)
+    for i, ch in enumerate(s):
+        if counts[ch] == 1:
+            return i
+    return -1
+
+def test_first_unique_char():
+    assert first_unique_char("leetcode") == 0   # 'l'
+    assert first_unique_char("loveleetcode") == 2   # 'v'
+    assert first_unique_char("aabb") == -1
+    assert first_unique_char("abcabcde") == 6   # 'd'
+
 
 if __name__ == "__main__":
     pytest.main([__file__])

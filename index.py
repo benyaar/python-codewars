@@ -1070,6 +1070,23 @@ def test_first_unique_char():
     assert first_unique_char("aabb") == -1
     assert first_unique_char("abcabcde") == 6   # 'd'
 
+def count_chars(s):
+    """
+    Counts the occurrences of each character in a string.
+
+    Example:
+        count_chars("hello") -> {'h': 1, 'e': 1, 'l': 2, 'o': 1}
+    """
+    result = {}
+    for ch in s:
+        result[ch] = result.get(ch, 0) + 1
+    return result
+
+def test_count_chars():
+    assert count_chars("hello") == {'h': 1, 'e': 1, 'l': 2, 'o': 1}
+    assert count_chars("") == {}
+    assert count_chars("aaa") == {'a': 3}
+    assert count_chars("Python") == {'P': 1, 'y': 1, 't': 1, 'h': 1, 'o': 1, 'n': 1}
 
 if __name__ == "__main__":
     pytest.main([__file__])

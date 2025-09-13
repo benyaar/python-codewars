@@ -1088,5 +1088,25 @@ def test_count_chars():
     assert count_chars("aaa") == {'a': 3}
     assert count_chars("Python") == {'P': 1, 'y': 1, 't': 1, 'h': 1, 'o': 1, 'n': 1}
 
+
+def count_vowels(s: str) -> int:
+    """
+    Counts the number of vowels (a, e, i, o, u) in a string.
+
+    Example:
+        count_vowels("hello") -> 2
+        count_vowels("xyz") -> 0
+    """
+    vowels = set("aeiouAEIOU")
+    return sum(1 for ch in s if ch in vowels)
+
+
+def test_count_vowels():
+    assert count_vowels("hello") == 2
+    assert count_vowels("xyz") == 0
+    assert count_vowels("AEIOU") == 5
+    assert count_vowels("") == 0
+    assert count_vowels("Programming") == 3
+
 if __name__ == "__main__":
     pytest.main([__file__])

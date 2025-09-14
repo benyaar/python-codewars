@@ -1109,6 +1109,24 @@ def test_count_vowels():
     assert count_vowels("Programming") == 3
 
 
+def filter_long_words(words, n):
+    """
+    Returns a list of words that are longer than n characters.
+
+    Example:
+        filter_long_words(["apple", "hi", "banana"], 3) -> ["apple", "banana"]
+    """
+    return [word for word in words if len(word) > n]
+
+
+def test_filter_long_words():
+    assert filter_long_words(["apple", "hi", "banana"], 3) == ["apple", "banana"]
+    assert filter_long_words(["cat", "dog", "fish"], 3) == ["fish"]
+    assert filter_long_words([], 2) == []
+    assert filter_long_words(["short", "tiny", "small"], 10) == []
+    assert filter_long_words(["Python", "Java", "C++"], 4) == ["Python"]
+
+
 def word_count(sentence: str) -> dict:
     """
     Counts the occurrences of each word in a sentence.

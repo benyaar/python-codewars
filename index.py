@@ -1127,6 +1127,37 @@ def test_filter_long_words():
     assert filter_long_words(["Python", "Java", "C++"], 4) == ["Python"]
 
 
+def fizz_buzz(n):
+    """
+    Returns a list of numbers from 1 to n with the following rules:
+    - For multiples of 3, use "Fizz" instead of the number.
+    - For multiples of 5, use "Buzz" instead of the number.
+    - For multiples of both 3 and 5, use "FizzBuzz".
+
+    Example:
+        fizz_buzz(5) -> [1, 2, "Fizz", 4, "Buzz"]
+    """
+    result = []
+    for i in range(1, n + 1):
+        if i % 3 == 0 and i % 5 == 0:
+            result.append("FizzBuzz")
+        elif i % 3 == 0:
+            result.append("Fizz")
+        elif i % 5 == 0:
+            result.append("Buzz")
+        else:
+            result.append(i)
+    return result
+
+
+def test_fizz_buzz():
+    assert fizz_buzz(5) == [1, 2, "Fizz", 4, "Buzz"]
+    assert fizz_buzz(15)[-1] == "FizzBuzz"
+    assert fizz_buzz(3) == [1, 2, "Fizz"]
+    assert fizz_buzz(1) == [1]
+    assert fizz_buzz(0) == []
+
+
 def word_count(sentence: str) -> dict:
     """
     Counts the occurrences of each word in a sentence.

@@ -1108,5 +1108,26 @@ def test_count_vowels():
     assert count_vowels("") == 0
     assert count_vowels("Programming") == 3
 
+
+def word_count(sentence: str) -> dict:
+    """
+    Counts the occurrences of each word in a sentence.
+    
+    Example:
+        word_count("hello world hello") -> {'hello': 2, 'world': 1}
+    """
+    counts = {}
+    for word in sentence.split():
+        counts[word] = counts.get(word, 0) + 1
+    return counts
+
+
+def test_word_count():
+    assert word_count("hello world hello") == {'hello': 2, 'world': 1}
+    assert word_count("") == {}
+    assert word_count("one two two three three three") == {'one': 1, 'two': 2, 'three': 3}
+    assert word_count("Python is fun") == {'Python': 1, 'is': 1, 'fun': 1}
+
+
 if __name__ == "__main__":
     pytest.main([__file__])

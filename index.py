@@ -1178,5 +1178,27 @@ def test_word_count():
     assert word_count("Python is fun") == {'Python': 1, 'is': 1, 'fun': 1}
 
 
+def transpose(matrix):
+    """
+    Returns the transpose of a given 2D matrix.
+    
+    Example:
+        [[1, 2, 3],
+         [4, 5, 6]] 
+         
+        → [[1, 4],
+           [2, 5],
+           [3, 6]]
+    """
+    return [list(row) for row in zip(*matrix)]
+
+
+def test_transpose():
+    assert transpose([[1, 2, 3], [4, 5, 6]]) == [[1, 4], [2, 5], [3, 6]]
+    assert transpose([[1]]) == [[1]]
+    assert transpose([[1, 2], [3, 4], [5, 6]]) == [[1, 3, 5], [2, 4, 6]]
+    assert transpose([]) == []
+
+
 if __name__ == "__main__":
     pytest.main([__file__])

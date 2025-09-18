@@ -1200,5 +1200,26 @@ def test_transpose():
     assert transpose([]) == []
 
 
+def longest_common_prefix(words):
+    if not words:
+        return ""
+
+    prefix = words[0]
+    for word in words[1:]:
+        while not word.startswith(prefix):
+            prefix = prefix[:-1]
+            if not prefix:
+                return ""
+    return prefix
+
+
+def test_longest_common_prefix():
+    assert longest_common_prefix(["flower", "flow", "flight"]) == "fl"
+    assert longest_common_prefix(["dog", "racecar", "car"]) == ""
+    assert longest_common_prefix(["interspecies", "interstellar", "interstate"]) == "inters"
+    assert longest_common_prefix(["a"]) == "a"
+    assert longest_common_prefix([]) == ""
+
+
 if __name__ == "__main__":
     pytest.main([__file__])
